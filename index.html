@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='UTF-8'>
     <title>Flashback</title>
     <script src="https://unpkg.com/@babel/standalone@7.2.5/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
@@ -10,8 +10,52 @@
   </head>
   <body>
     <div id="app"></div>
+    
     <script type='text/babel'>
-      ReactDOM.render(<h1>Hello Worlds!</h1>, document.getElementById('app'));
+    // This is the component that gives data to the card
+      var cardData = {
+        front: {
+          question: 'You may know that React was created at _____________.',
+          hint: 'This company\'s site is know for being written in PHP.'
+        }
+      };
+    // This is the component that feeds everything to the screen.
+    // It includes the call to the Card component with the data
+    // from the cardData component.
+      var App = function() {
+        return (
+          <div className='App'>
+            <h1 className='title'>
+              Flashback
+            </h1>
+            <p className='sub-title'>
+              An interactive flashcard app.
+            </p>
+            
+            <div className='card-list'>
+              {Card(cardData)}    
+            </div>
+          </div>
+        );
+      };
+
+    // This component builds the card with specific information.
+      var Card = function(props) {
+        return (
+          <div className='Card -front'>
+            <div className='front'>
+              <h3 className='question'>
+                {props.front.question}
+              </h3>
+              <p className='hint'>
+                <span>Hint:</span> {props.front.hint}
+              </p>
+            </div>
+          </div>
+        );
+      };
+
+      ReactDOM.render(App(), document.getElementById('app'));
     </script>
   </body>
 
