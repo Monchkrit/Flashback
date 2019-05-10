@@ -22,40 +22,44 @@
     // This is the component that feeds everything to the screen.
     // It includes the call to the Card component with the data
     // from the cardData component.
-      var App = function() {
-        return (
-          <div className='App'>
-            <h1 className='title'>
-              Flashback
-            </h1>
-            <p className='sub-title'>
-              An interactive flashcard app.
-            </p>
-            
-            <div className='card-list'>
-              {Card(cardData)}    
+      class App extends React.Component {
+        render () {
+          return (
+            <div className='App'>
+              <h1 className='title'>
+                Flashback
+              </h1>
+              <p className='sub-title'>
+                An interactive flashcard app.
+              </p>
+              
+              <div className='card-list'>
+                <Card front={cardData.front} />    
+              </div>
             </div>
-          </div>
-        );
-      };
+          );
+        }
+      }
 
     // This component builds the card with specific information.
-      var Card = function(props) {
-        return (
-          <div className='Card -front'>
-            <div className='front'>
-              <h3 className='question'>
-                {props.front.question}
-              </h3>
-              <p className='hint'>
-                <span>Hint:</span> {props.front.hint}
-              </p>
+      class Card extends React.Component {
+        render() {
+          return (
+            <div className='Card -front'>
+              <div className='front'>
+                <h3 className='question'>
+                  {this.props.front.question}
+                </h3>
+                <p className='hint'>
+                  <span>Hint:</span> {this.props.front.hint}
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      };
+          );
+        }
+      }
 
-      ReactDOM.render(App(), document.getElementById('app'));
+      ReactDOM.render(<App />, document.getElementById('app'));
     </script>
   </body>
 
