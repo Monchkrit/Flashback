@@ -6,19 +6,16 @@
     <script src="https://unpkg.com/@babel/standalone@7.2.5/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+    <script src="flashcardData.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css"></link>
   </head>
   <body>
     <div id="app"></div>
     
     <script type='text/babel'>
-    // This is the component that gives data to the card
-      var cardData = {
-        front: {
-          question: 'You may know that React was created at _____________.',
-          hint: 'This company\'s site is know for being written in PHP.'
-        }
-      };
+    // This is the javascript data brought in by scripting in the flashcardData.js file
+      const cardData = importedFlashCardDataFile; 
+      
     // This is the component that feeds everything to the screen.
     // It includes the call to the Card component with the data
     // from the cardData component.
@@ -34,7 +31,7 @@
               </p>
               
               <div className='card-list'>
-                <Card front={cardData.front} />    
+                {cardData.map((card) => <Card front={card.front} />)}    
               </div>
             </div>
           );
